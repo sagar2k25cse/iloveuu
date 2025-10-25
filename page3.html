@@ -2,84 +2,79 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I Love You Mansuuuu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You Mansuuuu 💞</title>
 <style>
   body {
     margin: 0;
-    background: radial-gradient(circle, #ff758c, #ff7eb3);
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: radial-gradient(circle at center, #f5576c, #f093fb);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
     font-family: 'Brush Script MT', cursive;
     text-align: center;
   }
   h1 {
-    font-size: 3.5em;
-    position: relative;
+    font-size: 3.2em;
     animation: heartbeat 1.5s infinite;
   }
   @keyframes heartbeat {
     0%, 100% {transform: scale(1);}
     50% {transform: scale(1.3);}
   }
-  canvas {
+  p {
+    font-size: 1.6em;
+    margin-top: 20px;
+  }
+  .heart {
     position: absolute;
-    top: 0; left: 0;
+    bottom: -10vh;
+    font-size: 2em;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.8;
+  }
+  @keyframes floatUp {
+    0% {transform: translateY(0); opacity: 0;}
+    50% {opacity: 1;}
+    100% {transform: translateY(-120vh); opacity: 0;}
   }
   footer {
     position: absolute;
     bottom: 10px;
     font-size: 0.8em;
+    color: rgba(255,255,255,0.8);
   }
 </style>
 </head>
 <body>
-  <canvas id="hearts"></canvas>
-  <h1>I Love You Mansuuuuuu 💞</h1>
 
-  <!-- Romantic background music -->
-  <audio autoplay loop>
-    <source src="https://www.free-stock-music.com/music/roa-music-blue.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<h1>I Love You Mansuuuu 💞</h1>
+<p>You are my forever, my comfort, and my world.</p>
 
-  <footer>
-    Music: "Blue" by Roa Music (https://soundcloud.com/roa_music1031) | CC BY 3.0
-  </footer>
+<audio autoplay loop>
+  <source src="https://www.free-stock-music.com/music/roa-music-blue.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-  <script>
-    const canvas = document.getElementById('hearts');
-    const ctx = canvas.getContext('2d');
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    const hearts = [];
-    function Heart(x, y){
-      this.x = x; this.y = y;
-      this.size = Math.random()*20 + 10;
-      this.speed = Math.random()*2 + 1;
-      this.alpha = 1;
-    }
-    Heart.prototype.draw = function(){
-      ctx.font = `${this.size}px Arial`;
-      ctx.fillText('💖', this.x, this.y);
-    }
-    function animate(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      hearts.push(new Heart(Math.random()*canvas.width, canvas.height));
-      for(let i=0;i<hearts.length;i++){
-        const h = hearts[i];
-        h.y -= h.speed;
-        h.alpha -= 0.005;
-        ctx.globalAlpha = h.alpha;
-        h.draw();
-        if(h.alpha<=0) hearts.splice(i,1);
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
+<footer>
+  Music: "Blue" by Roa Music (https://soundcloud.com/roa_music1031) | CC BY 3.0
+</footer>
+
+<script>
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 4 + Math.random() * 6 + 's';
+    heart.style.fontSize = 1 + Math.random() * 2 + 'em';
+    document.body.appendChild(heart);
+  }
+</script>
+
 </body>
 </html>
